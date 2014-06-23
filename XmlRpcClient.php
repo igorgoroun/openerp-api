@@ -2,74 +2,139 @@
 
 namespace Simbigo\OpenERP;
 
+/**
+ * Class XmlRpcClient
+ * @package Simbigo\OpenERP
+ */
 class XmlRpcClient
 {
+	/**
+	 * @var string
+	 */
 	public $userAgent = 'Simbigo XML-RPC Client';
 
+	/**
+	 * @var
+	 */
 	private $_host;
+	/**
+	 * @var
+	 */
 	private $_port;
+	/**
+	 * @var string
+	 */
 	private $_path = '';
+	/**
+	 * @var string
+	 */
 	private $_charset = 'utf-8';
+	/**
+	 * @var
+	 */
 	private $_lastRawResponse;
+	/**
+	 * @var
+	 */
 	private $_lastRequest;
 
+	/**
+	 * @param $host
+	 * @param int $port
+	 * @param string $charset
+	 */
 	public function __construct($host, $port = 80, $charset = 'utf-8')
 	{
 		$this->setHost($host);
 		$this->setPort($port);
 		$this->setCharset($charset);
 	}
-	
+
+	/**
+	 * @return mixed
+	 */
 	public function getHost()
 	{
 		return $this->_host;
 	}
 
+	/**
+	 * @param $host
+	 */
 	public function setHost($host)
 	{
 		$this->_host = rtrim($host, '/');
 	}
-	
+
+	/**
+	 * @param $charset
+	 */
 	public function setCharset($charset)
 	{
 		$this->_charset = $charset;
 	}
-	
+
+	/**
+	 * @return string
+	 */
 	public function getCharset()
 	{
 		return $this->_charset;
 	}
-	
+
+	/**
+	 * @return mixed
+	 */
 	public function getPort()
 	{
 		return $this->_port;
 	}
-	
+
+	/**
+	 * @param $port
+	 */
 	public function setPort($port)
 	{
 		$this->_port = (int)$port;
 	}
-	
+
+	/**
+	 * @return string
+	 */
 	public function getPath()
 	{
 		return $this->_path;
 	}
-	
+
+	/**
+	 * @param $path
+	 */
 	public function setPath($path)
 	{
 		$this->_path = $path;
 	}
-	
+
+	/**
+	 * @return mixed
+	 */
 	public function getLastResponse()
 	{
 		return $this->_lastRawResponse;
 	}
-	
+
+	/**
+	 * @return mixed
+	 */
 	public function getLastRequest()
 	{
 		return $this->_lastRequest;
 	}
-	
+
+	/**
+	 * @param $method
+	 * @param array $params
+	 * @return mixed|\SimpleXMLElement|string
+	 */
 	public function call($method, $params = [])
 	{
 		if (function_exists('xmlrpc_encode_request')) {
@@ -103,7 +168,10 @@ class XmlRpcClient
 		$response = json_decode($response, true);
 		return $response;
 	}
-	
+
+	/**
+	 * @return string
+	 */
 	public function getDefaultHeader()
 	{
 		$headers  = "";
@@ -112,6 +180,11 @@ class XmlRpcClient
 		return $headers;
 	}
 
+	/**
+	 * @param $method
+	 * @param array $params
+	 * @return string
+	 */
 	public function encodeRequest($method, array $params)
 	{
 		$payload = '<?xml version="1.0" encoding="' . $this->getCharset() . '"?>' . "\r\n";
@@ -129,6 +202,10 @@ class XmlRpcClient
 		return $payload;
 	}
 
+	/**
+	 * @param $param
+	 * @return bool|string
+	 */
 	public function encodeParam($param)
 	{
 		switch (gettype($param)) {
@@ -159,6 +236,10 @@ class XmlRpcClient
 		return $encoded;
 	}
 
+	/**
+	 * @param $array
+	 * @return string
+	 */
 	private function encodeArray($array)
 	{
 		if ($this->isAssoc($array)) {
@@ -184,6 +265,10 @@ class XmlRpcClient
 		return $encoded;
 	}
 
+	/**
+	 * @param $array
+	 * @return bool
+	 */
 	private function isAssoc($array)
 	{
 		if (is_array($array) && !is_numeric(array_shift(array_keys($array)))) {
