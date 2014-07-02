@@ -241,7 +241,16 @@ class OpenERP
 			return [];
 		}
 		$records = [];
-		$response = $response['value'];
+
+		// When only one item is fetched the value of result is a associative array.
+		// As a result records will be an array with length 1 with an empty array inside.
+		// The following check fixes the issue.
+		if (count($ids) === 1) {
+			$response = array($response['value']);
+		} else {
+			$response = $response['value'];
+		}
+		
 		foreach ($response as $item) {
 			$record = [];
 			$recordItems = $item['struct']['member'];
