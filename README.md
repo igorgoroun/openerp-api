@@ -1,5 +1,11 @@
 # OpenERP API #
 
+> I recommend using the enhanced version of the client from [jacobsteringa](https://github.com/jacobsteringa/OdooClient)
+
+[![Latest Stable Version](https://poser.pugx.org/simbigo/openerp-api/v/stable)](https://packagist.org/packages/simbigo/openerp-api)
+[![Total Downloads](https://poser.pugx.org/simbigo/openerp-api/downloads)](https://packagist.org/packages/simbigo/openerp-api)
+[![License](https://poser.pugx.org/simbigo/openerp-api/license)](https://packagist.org/packages/simbigo/openerp-api)
+
 ## How to use: ##
 
 For begin you must call login method.
