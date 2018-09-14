@@ -176,7 +176,6 @@ class OpenERP
 	 * @param string $method
 	 * @param array $ids
 	 * @param $data
-	 * @return int
 	 */
 	public function execute($model, $method, $ids, $kvargs)
 	{
@@ -187,8 +186,6 @@ class OpenERP
 
 		$response = $client->call('execute', $params);
 		$this->throwExceptionIfFault($response);
-		
-		return (int)$response['params']['param']['value']['boolean'];
 	}
 
 
