@@ -188,7 +188,7 @@ class OpenERP
 		$response = $client->call('execute', $params);
 		$this->throwExceptionIfFault($response);
 		
-		return (int)$response['params']['param']['value']['int'];
+		return (int)$response['params']['param']['value']['boolean'];
 	}
 
 
