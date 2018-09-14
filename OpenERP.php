@@ -1,10 +1,10 @@
 <?php
 
-namespace Simbigo\OpenERP;
+namespace Delmar\OpenERP;
 
 /**
  * Class OpenERP
- * @package Simbigo\OpenERP
+ * @package Delmar\OpenERP
  */
 class OpenERP
 {
@@ -170,6 +170,27 @@ class OpenERP
 
 		return $response['params']['param']['value']['string'];
 	}
+
+	/**
+	 * @param string $model
+	 * @param string $method
+	 * @param array $ids
+	 * @param $data
+	 * @return int
+	 */
+	public function execute($model, $method, $ids, $kvargs)
+	{
+		$client = $this->getClient();
+		$client->setPath('/xmlrpc/object');
+
+		$params = [$this->_db, $this->getUid(), $this->_password, $model, $method, $ids, $kvargs];
+
+		$response = $client->call('execute', $params);
+		$this->throwExceptionIfFault($response);
+		
+		return (int)$response['params']['param']['value']['int'];
+	}
+
 
 	/**
 	 * @param $model

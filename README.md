@@ -1,22 +1,17 @@
 # OpenERP API #
 
-> I recommend using the enhanced version of the client from [jacobsteringa](https://github.com/jacobsteringa/OdooClient)
-
-[![Latest Stable Version](https://poser.pugx.org/simbigo/openerp-api/v/stable)](https://packagist.org/packages/simbigo/openerp-api)
-[![Total Downloads](https://poser.pugx.org/simbigo/openerp-api/downloads)](https://packagist.org/packages/simbigo/openerp-api)
-[![License](https://poser.pugx.org/simbigo/openerp-api/license)](https://packagist.org/packages/simbigo/openerp-api)
+Fork from [simbigo/openerp-api](https://github.com/simbigo/openerp-api)
 
 ## How to use: ##
 
 For begin you must call login method.
 
-
 ```
 #!php
 
 <?php
-use Simbigo\OpenERP\OpenERP;
-$erp = new OpenERP('http://127.0.0.1:8069', 'utf-8');
+use Delmar\OpenERP\OpenERP;
+$erp = new OpenERP('http://127.0.0.1:8089', 'utf-8');
 $erp->login('db_test', 'myLogin', 'myPassword'); // return user id, if success
 ```
 
@@ -73,10 +68,18 @@ $ids = [30, 31];
 $erp->write('res.partner', $ids, $columns); // return true
 ```
 
+## Execute method ##
+```
+#!php
+
+<?php
+$erp->login('db_test', 'myLogin', 'myPassword');
+$ids = [30, 31];
+$erp->execute('stock.picking', 'test_verified', $ids, $kvargs); // return true
+```
+
 
 ## Delete records ##
-
-
 ```
 #!php
 

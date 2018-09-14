@@ -1,17 +1,17 @@
 <?php
 
-namespace Simbigo\OpenERP;
+namespace Delmar\OpenERP;
 
 /**
  * Class XmlRpcClient
- * @package Simbigo\OpenERP
+ * @package Delmar\OpenERP
  */
 class XmlRpcClient
 {
 	/**
 	 * @var string
 	 */
-	public $userAgent = 'Simbigo XML-RPC Client';
+	public $userAgent = 'Delmar XML-RPC Client';
 
 	/**
 	 * @var
