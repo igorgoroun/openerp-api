@@ -1,10 +1,10 @@
 {
-    "name": "simbigo/openerp-api",
+    "name": "delmar/openerp-api",
 	"description": "PHP API for OpenERP",
     "authors": [
         {
-            "name": "Andrey Bondarev",
-            "email": "bondarew.andrey@gmail.com"
+            "name": "Igor Goroun",
+            "email": "igor.goroun@gmail.com"
         }
     ],
 	"license": "MIT",
