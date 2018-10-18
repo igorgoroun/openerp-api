@@ -183,7 +183,7 @@ class OpenERP
 		$client = $this->getClient();
 		$client->setPath('/xmlrpc/object');
 
-		$params = [$this->_db, $this->getUid(), $this->_password, $model, $method, $ids, $kvargs];
+		$params = array_merge([$this->_db, $this->getUid(), $this->_password, $model, $method, $ids], $kvargs);
 
 		$response = $client->call('execute', $params);
 		$this->throwExceptionIfFault($response);
