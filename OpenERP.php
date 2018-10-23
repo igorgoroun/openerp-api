@@ -178,12 +178,12 @@ class OpenERP
 	 * @param $data
 	 * @return mixed
 	 */
-	public function execute($model, $method, $ids, $kvargs)
+	public function execute($model, $method, $kvargs)
 	{
 		$client = $this->getClient();
 		$client->setPath('/xmlrpc/object');
 
-		$params = array_merge([$this->_db, $this->getUid(), $this->_password, $model, $method, $ids], $kvargs);
+		$params = array_merge([$this->_db, $this->getUid(), $this->_password, $model, $method], array_values($kvargs));
 
 		$response = $client->call('execute', $params);
 		$this->throwExceptionIfFault($response);
